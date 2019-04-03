@@ -1,0 +1,14 @@
+package com.simfle.boottoy.room;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class RoomController {
+
+    @Autowired
+    private RoomRepository roomRepository;
+
+
+
+}
