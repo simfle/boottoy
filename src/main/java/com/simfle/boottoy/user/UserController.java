@@ -1,19 +1,19 @@
 package com.simfle.boottoy.user;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-
 @Controller
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<User> getUser(@PathVariable String userId) {
@@ -21,15 +21,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
-
-    @PostMapping("/user")
-    public ResponseEntity<Void> saveUser(User user) {
-
+    @PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> saveUser(@RequestBody User user) {
+        userRepository.save(user);
         return ResponseEntity.ok().build();
     }
 
-
-    @PutMapping("/user")
+    @PutMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateUser(User user) {
 
         return ResponseEntity.ok().build();
@@ -38,6 +36,7 @@ public class UserController {
     @DeleteMapping("/user/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        userRepository.delete(user);
         return ResponseEntity.ok().build();
     }
 }

@@ -15,7 +15,6 @@ public class Room {
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     @Column(name = "room_id", length = 50)
-    @JsonIgnore
     private String id;
 
     @Column(name = "access_code", length = 6)

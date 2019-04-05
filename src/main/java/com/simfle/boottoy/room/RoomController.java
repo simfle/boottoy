@@ -1,14 +1,13 @@
 package com.simfle.boottoy.room;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 @Controller
+@RequiredArgsConstructor
 public class RoomController {
 
-    @Autowired
-    private RoomRepository roomRepository;
-
+    private final RoomRepository roomRepository;
 
 
 }
