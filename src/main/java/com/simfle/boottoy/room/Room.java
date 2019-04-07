@@ -1,12 +1,17 @@
 package com.simfle.boottoy.room;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false, of = {"id"})
 @Table(name = "rt_room", uniqueConstraints = @UniqueConstraint(name = "access_code", columnNames = {"access_code"}))
 @Entity
 public class Room {

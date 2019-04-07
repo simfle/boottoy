@@ -1,11 +1,17 @@
 package com.simfle.boottoy.user;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false, of = {"id"})
 @Table(name = "mt_user")
 @Entity
 public class User {
@@ -21,4 +27,15 @@ public class User {
 
     @Column(name = "password", length = 70)
     private String password;
+
+    public User(User user) {
+        this.username = user.username;
+        this.password = user.password;
+    }
+
+    public User(User user, String id) {
+        this.id = id;
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+    }
 }

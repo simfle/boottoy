@@ -26,7 +26,7 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    //@Ignore
+    @Ignore
     @Test
     public void getUser() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/user/1"))
@@ -40,10 +40,9 @@ public class UserControllerTest {
         String username = "USER04";
         String password = "USER04";
         this.mockMvc.perform(MockMvcRequestBuilders.post("/user")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"username\": \"" + username + "\", " + "\"password\":\"" + password + "\"}"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print()).andReturn();
-
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content("{ \"username\": \"" + username + "\", " + "\"password\":\"" + password + "\"}"))
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print()).andReturn();
     }
 }

@@ -1,11 +1,17 @@
 package com.simfle.boottoy.ticket;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false, of = {"id"})
 @Table(name = "rt_ticket")
 @Entity
 public class Ticket {
